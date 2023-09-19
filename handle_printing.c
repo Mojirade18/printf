@@ -20,7 +20,7 @@ typedef struct {
  */
 int handle_print(const char *formatSpecifier,
 		int *index, va_list list, char outputBuffer[],
-int activeFlags, int printWidth, int precision, int sizeSpecifier)
+		int activeFlags, int printWidth, int precision, int sizeSpecifier)
 {
 	int i, unknownLength = 0, printedChars = -1;
 	FormatType formatTypes[] = {
