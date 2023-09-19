@@ -3,6 +3,7 @@
 
 typedef struct {
 	char format;
+	int (*function)(va_list, char[], int, int, int, int, int);
 
 /**
  * handle_print - Prints an argument based on its type
