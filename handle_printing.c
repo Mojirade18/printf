@@ -1,4 +1,10 @@
 #include "main.h"
+#include <unistd.h>
+
+typedef struct {
+	char format;
+	int (*function)(va_list, char[], int, int, int, int, int);
+} FormatType;	
 
 /**
  * handle_print - Prints an argument based on its type
@@ -14,7 +20,7 @@
  */
 int handle_print(const char *formatSpecifier,
 		int *index, va_list list, char outputBuffer[],
-int activeFlags, int printWidth, int precision, int sizeSpecifier)
+		int activeFlags, int printWidth, int precision, int sizeSpecifier)
 {
 	int i, unknownLength = 0, printedChars = -1;
 	FormatType formatTypes[] = {

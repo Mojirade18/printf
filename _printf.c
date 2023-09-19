@@ -34,12 +34,12 @@ int _printf(const char *format, ...)
 		else
 		{
 			printBuffer(outputBuffer, &bufferIndex);
-			flags = getFlags(format, &i);
-			width = getWidth(format, &i, args);
-			precision = getPrecision(format, &i, args);
-			size = getSize(format, &i);
+			flags = get_flags(format, &i);
+			width = get_width(format, &i, args);
+			precision = get_precision(format, &i, args);
+			size = get_size(format, &i);
 			++i;
-			printedChars = handlePrint(format, &i, args, outputBuffer,
+			printedChars = handle_print(format, &i, args, outputBuffer,
 					flags, width, precision, size);
 		if (printedChars == -1)
 			return (-1);
