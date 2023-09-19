@@ -2,6 +2,7 @@
 #include <unistd.h>
 
 typedef struct {
+	char format;
 
 /**
  * handle_print - Prints an argument based on its type
