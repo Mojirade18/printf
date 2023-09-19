@@ -1,7 +1,7 @@
 #include "main.h"
 #include <unistd.h>
 
-
+typedef struct {
 
 /**
  * handle_print - Prints an argument based on its type
