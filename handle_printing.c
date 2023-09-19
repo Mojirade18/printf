@@ -1,11 +1,6 @@
 #include "main.h"
 #include <unistd.h>
-
-struct FormatType 
-{
-	char format;
-	int (*function)(va_list, char[], int, int, int, int);
-};
+#include <stdarg.h>
 
 /**
  * handle_print - Prints an argument based on its type

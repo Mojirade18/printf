@@ -17,6 +17,11 @@
 #define S_LONG 2
 #define S_SHORT 1
 
+typedef struct {
+	char format;
+	int (*function)(va_list, char[], int, int, int, int);
+} FormatType;
+
 
 /**
  * struct fmt - Struct op
