@@ -26,6 +26,6 @@ int get_size(const char *formatString, int *currentIndex)
 
 	else
 		*currentIndex = currentIdx;
-	
+
 	return (sizeSpecifier);
 }
