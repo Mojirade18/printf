@@ -7,10 +7,9 @@
 * @currentIndex: Current index in the format string
 *
 * Return: Size specifier.
-
 */
-int get_size(const char *formatString, int *currentIndex)
 
+int get_size(const char *formatString, int *currentIndex)
 {
 	int currentIdx = *currentIndex + 1;
 	int sizeSpecifier = 0;

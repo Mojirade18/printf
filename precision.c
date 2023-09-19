@@ -6,15 +6,14 @@
 * @argList: List of arguments
 * Return: Precision.
 */
-
 int get_precision(const char *format, int *currentIndex, va_list argList)
 {
-	int currentIdx = *currentIndex + 1;
-	int precision = -1;
+	int currentIdx = *currentIndex + 1; int precision = -1;
 
 	if (format[currentIdx] != '.')
 		return precision;
-		precision = 0; //need explination here, should there always be a . for this to work?
+
+		precision = 0; 
 
 	for (currentIdx += 1; format[currentIdx] != '\0'; currentIdx++)
 	{

@@ -22,7 +22,8 @@
 
 	if (number == 0)
 		outputBuffer[index--] = '0';
-		outputBuffer[BUFF_SIZE - 1] = '\0';
+		
+	outputBuffer[BUFF_SIZE - 1] = '\0';
 
 		while (number > 0)
 		{

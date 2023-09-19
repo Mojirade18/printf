@@ -2,7 +2,6 @@
 
 /**
 * print_hexa - Prints a hexadecimal number in lower or upper
-*
 * @argList: List of arguments
 * @mapTo: Array of values to map the number to
 * @outputBuffer: Buffer array to handle print
@@ -11,7 +10,6 @@
 * @printWidth: Width specifier
 * @precision: Precision specification
 * @size: Size specifier
-*
 * Return: Number of chars printed
 */
 
@@ -26,9 +24,10 @@ int print_hexa(va_list argList, char mapTo[], char outputBuffer[], int activeFla
 
 	if (number == 0)
 		outputBuffer[index--] = '0';
-		outputBuffer[BUFF_SIZE - 1] = '\0';
+		
+	outputBuffer[BUFF_SIZE - 1] = '\0';
 
-		while (number > 0)
+	while (number > 0)
 	{
 		outputBuffer[index--] = mapTo[number % 16];
 		number /= 16;
