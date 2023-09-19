@@ -3,7 +3,7 @@
 
 typedef struct {
 	char format;
-	int (*function)(va_list, char[], int, int, int, int, int);
+	int (*function)(va_list, char[], int, int, int, int);
 } FormatType;	
 
 /**
@@ -34,7 +34,7 @@ int handle_print(const char *formatSpecifier,
 	{
 	if (formatSpecifier[*index] == formatTypes[i].format)
 	{
-		return (formatTypes[i].function(list), outputBuffer,
+		return formatTypes[i].function(list, outputBuffer,
 		activeFlags, printWidth, precision, sizeSpecifier);
 	}
 	}
