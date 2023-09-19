@@ -13,7 +13,7 @@ int get_precision(const char *format, int *currentIndex, va_list argList)
 	if (format[currentIdx] != '.')
 		return precision;
 
-		precision = 0; 
+	precision = 0; 
 
 	for (currentIdx += 1; format[currentIdx] != '\0'; currentIdx++)
 	{
