@@ -1,75 +1,69 @@
-#include "main.h"
-#include <unistd.h>
 #include <stdarg.h>
+#include <unistd.h>
+#include "main.h"
+
+void printBuffer(char buffer[], int *bufferIndex);
 
 /**
- * print_string - prints a string
- * @str: the string to be printed
- * Return: numbers of characters printed
- */
-int print_string(char *str)
-{
-	int char_pr = 0;
-
-	while (*str)
-	{
-		write(1, str, 1);
-		char_pr++;
-		str++;
-	}
-	return (char_pr);
-}
-
-/**
- * _printf - prints output with specifiers
- * @format: the format string
- * @...: other arguments
- * Return: number of characters printed
+ * _printf - Printf function
+ *
+ * @format: format string.
+ * Return: Number of characters printed.
  */
 int _printf(const char *format, ...)
 {
-	int char_pr = 0;
-	va_list list_args;
+	int i, printedChars = 0, totalPrintedChars = 0;
+	int flags, width, precision, size, bufferIndex = 0;
+	va_list args;
+	char outputBuffer[BUFF_SIZE];
 
-	va_start(list_args, format);
+	if (format == NULL)
+	return (-1);
 
-	while (*format)
+	va_start(args, format);
+
+	for (i = 0; format && format[i] != '\0'; i++)
 	{
-		if (*format != '%')
+		if (format[i] != '%')
 		{
-			write(1, format, 1);
-			char_pr++;
+			outputBuffer[bufferIndex++] = format[i];
+			if (bufferIndex == BUFF_SIZE)
+				printBuffer(outputBuffer, &bufferIndex);
+			printedChars++;
 		}
 		else
 		{
-			format++;
-			if (*format == 'c')
-			{
-				char c_arg = va_arg(list_args, int);
-
-				write(1, &c_arg, 1);
-				char_pr++;
-			}
-			else if (*format == 's')
-			{
-				char *str_arg = va_arg(list_args, char*);
-
-				char_pr += print_string(str_arg);
-			}
-			else if (*format == '%')
-			{
-				write(1, "%", 1);
-				char_pr++;
-			}
-			else
-			{
-				write(1, "%", 1);
-				write(1, format, 1);
-				char_pr += 2;
-			}
+			printBuffer(outputBuffer, &bufferIndex);
+			flags = getFlags(format, &i);
+			width = getWidth(format, &i, args);
+			precision = getPrecision(format, &i, args);
+			size = getSize(format, &i);
+			++i;
+			printedChars = handlePrint(format, &i, args, outputBuffer,
+					flags, width, precision, size);
+		if (printedChars == -1)
+			return (-1);
+		totalPrintedChars += printedChars;
 		}
-		format++;
 	}
-	va_end(list_args);
-	return (char_pr);
+	printBuffer(outputBuffer, &bufferIndex);
+
+	va_end(args);
+
+	return (totalPrintedChars);
+}
+
+/**
+ * printBuffer - Prints the contents of the buffer if it exists
+ *
+ * @buffer: Array of characters
+ * @bufferIndex: Index at which to add the next
+ * character, represents the length.
+ */
+void printBuffer(char buffer[], int *bufferIndex)
+{
+	if (*bufferIndex > 0)
+		write(1, &buffer[0], *bufferIndex);
+
+	*bufferIndex = 0;
 }
